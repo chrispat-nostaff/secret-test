@@ -1,9 +1,14 @@
-on: [push]
+on:
+  push:
+  commit_comment:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - run: echo $VALUE
+      env:
+        VALUE: ${{ secrets.SECRET_VALUE }}
+    - run: echo $VALUE | base64
       env:
         VALUE: ${{ secrets.SECRET_VALUE }}
